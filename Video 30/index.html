@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Variables</title>
+    <style>
+      :root {
+        --color: rgb(110, 110, 180);
+        --seccolor: skyblue;
+      }
+      /* div:first-child{
+            background-color: rgb(194, 136, 249);
+        }
+div:nth-child(2){
+    background-color: bisque;
+} */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .nav {
+        background-color: var(--color);
+      }
+      .container {
+        background-color: var(--seccolor);
+      }
+      ul {
+        display: flex;
+      }
+      ul li {
+        list-style: none;
+        padding: 34px;
+      }
+      ul li:first-child {
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+      assumenda quasi sunt natus aut aspernatur dolore expedita omnis quisquam.
+      Necessitatibus similique, tempora adipisci ipsam nesciunt inventore
+      commodi voluptate minima asperiores. Earum, maxime voluptate nesciunt,
+      perspiciatis sunt aperiam reprehenderit dolorem nulla voluptatum quaerat
+      aspernatur omnis? Aspernatur.
+    </div>
+  </body>
+</html>
