@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyntrix — Build. Innovate. Impact.</title>
+    <style>
+        body{
+            background-color: rgb(33, 7, 27);
+        }
+        h1{
+            color: rgb(255, 255, 255);
+            text-align: center;
+            animation:vyntrix 1s ease-in-out 1s 1;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            font-size: 80px;
+            font-family: Georgia, serif;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgb(35, 6, 115), 
+               0 0 40px rgb(89, 0, 255);
+        }
+        p{
+           color: aliceblue;
+           font-family:sans-serif;
+           font-size: small;
+           text-align: center;
+           /* animation: line 2s ease-in-out 2s 1; */
+        }
+       @keyframes vyntrix {
+        from{
+            transform: translateX(-100vw);
+            opacity: 0;
+            
+        }
+        to{
+            transform: translateX(0);
+            opacity: 1;
+        }
+       }
+       /* @keyframes line {
+        from{
+            transform: translateX(0);
+            opacity: 0;
+
+        }
+        to{
+           transform: translateX(100);
+           opacity: 1;
+        }
+        
+       }
+      
+        
+       } */
+       .exp{
+        background-color: rgb(242, 243, 247);
+        border: none;
+        height: 30px;
+        width: 60px;
+
+       }
+       h2{
+        color: rgb(251, 253, 254);
+        font-family: cursive;
+        font-size:xx-large;
+        font-style: oblique;
+       }
+#about{
+    text-align: center;
+}
+.products-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+  background-color: rgb(50, 20, 40);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+}
+h2{
+    text-align: center;
+}
+img{
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    object-position:center 20% ;
+    margin-top: 10px;
+    margin-left: 10px;
+    filter: contrast(1);
+
+}
+.founder{
+    background-color: rgb(249, 247, 250);
+    height: 60px;
+    margin-top: 10px;
+
+}
+.label{
+    color: cornsilk;
+}
+.founder{
+    
+}
+.founder-container{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+}
+html{
+    scroll-behavior: smooth;
+}
+.btn{
+    text-align: center;
+}
+.btn2{
+    border: none;
+    border-radius: 500px;
+    height: 80px;
+    background-color: rgb(55, 17, 55);
+    color: white;
+}
+@media (max-width: 768px) {
+    
+    h1{
+        font-size: 40px;
+        letter-spacing: 5px;
+    }
+    .products-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-card{
+        width: 80%;
+    }
+    .founder-container{
+        flex-direction: column;
+                text-align: center;
+            }
+        .founder-mg{
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>VYNTRIX</h1>
+            
+            <p>This is where idea become projects, projects become product, and product solve real world problems
+            </p>
+        </header>
+        <div class="btn">
+                <a href="#founder"><button class="btn2"> Touch here to meet the Founder</button></a>
+            </div>
+        <section>
+
+</div>
+           
+        </section>
+        
+    
+    </div>
+    <div>
+        <h2 id="about">About</h2>
+        <p>Vyntrix is a technology company dedicated to building intelligent software that solves real-world problems.
+
+We believe technology should do more than automate tasks—it should create meaningful impact. By combining modern software engineering with artificial intelligence, we strive to develop solutions that help businesses work smarter, faster, and more efficiently.
+
+Our journey begins with learning, innovation, and a commitment to building products that deliver lasting value. Every solution we create is driven by curiosity, precision, and the pursuit of excellence.
+</p>
+
+    </div>
+<div>
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="products-container">
+
+            <div class="product-card">
+                <h3>CareerScan</h3>
+                <p class="careerscan">Analyze student data and find the right career path.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>CareerCompass</h3>
+                <p class="careercompass">A career counselling tool for Indian students.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Coming Soon</h3>
+                <p class="comingsoon">More Products in development.</p>
+            </div>
+        </div>
+        </section>
+    <section id="founder">
+        <div class="founder-container">
+            <img src="final.jpeg" class="founder-mg" alt="Aryan Vijay Ganjare">
+            <div class="founder-info">
+                <h2>About the Founder</h2>
+                <p>
+
+Aryan Ganjre is the founder of Vyntrix, driven by a vision to build technology that solves meaningful real-world problems.
+
+With a deep commitment to continuous learning, innovation, and understanding the challenges faced by industries, he believes that meaningful solutions begin with asking the right questions.
+
+Vyntrix was founded on a simple principle: create practical, intelligent solutions that deliver lasting value rather than chase trends. Every step of the journey is guided by curiosity, discipline, and a commitment to continuous improvement.
+
+</p>
+            </div>
+            
+          
+        </div>
+    </section>
+    <footer>
+        <p>Built by Aryan Ganjare | Founder, Vyntrix
+        </p>
+        <p>&copy; 2026 Vyntrix. All rights reserved.</p>
+    </footer>
+</div>    
+</body>
+</html>
