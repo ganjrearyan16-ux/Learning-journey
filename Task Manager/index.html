@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apka Task Manager</title>
+    <style>
+body{
+background-color: rgb(18, 18, 56);
+}
+.container{
+    box-sizing: border-box;
+    border: 2px solid rgb(164, 103, 255);
+    height: 200px;
+    width: 100vw;
+  position: fixed;
+
+}
+
+h2{
+  text-align: center;
+  color: white;
+}
+
+.input-area{
+     justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+#addbtn{
+    background-color: rgb(255, 255, 255);
+    height: 34px;
+    width: 55px;
+    border-radius: 20px;
+
+}
+
+#taskInput{
+    height: 34px;
+    width: 300px
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Apka Task Manager</h2>
+       <div class="input-area">
+        <input type="text" id="taskInput" placeholder="Task likho...">
+        <button id="addbtn">Add</button>
+       </div>
+       <ul id="tasklist"></ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

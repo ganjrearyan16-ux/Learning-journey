@@ -1,0 +1,218 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.container { padding: 1rem 0; }
+.header { margin-bottom: 1.5rem; }
+.header h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.header p { font-size: 13px; color: var(--color-text-secondary); }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tab { padding: 6px 14px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); font-size: 13px; font-weight: 400; cursor: pointer; background: transparent; color: var(--color-text-secondary); transition: all 0.15s; }
+.tab:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+.tab.active { background: #3C3489; border-color: #3C3489; color: #EEEDFE; }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.tool-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; cursor: pointer; transition: border-color 0.15s; }
+.tool-card:hover { border-color: var(--color-border-secondary); }
+.tool-card.expanded { border-color: #534AB7; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-left { display: flex; align-items: center; gap: 10px; }
+.rank { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); min-width: 20px; }
+.tool-icon { width: 32px; height: 32px; border-radius: var(--border-radius-md); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.tool-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.tool-tagline { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+.priority-badge { font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); white-space: nowrap; }
+.p-must { background: #FAECE7; color: #993C1D; }
+.p-high { background: #EEEDFE; color: #3C3489; }
+.p-good { background: #E1F5EE; color: #0F6E56; }
+.expand-icon { font-size: 14px; color: var(--color-text-secondary); margin-left: auto; transition: transform 0.2s; }
+.expand-icon.open { transform: rotate(180deg); }
+.card-details { overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+.card-details.open { max-height: 400px; }
+.divider { height: 0.5px; background: var(--color-border-tertiary); margin: 12px 0; }
+.detail-section { margin-bottom: 10px; }
+.detail-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.detail-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.6; }
+.use-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.use-tag { font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+.free-badge { font-size: 11px; color: var(--color-text-success); }
+.counter { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1rem; }
+</style>
+
+<div class="container">
+<h2 class="sr-only" style="position:absolute;left:-9999px">AI Tools Mastery Guide — categorized by use case with priority ratings</h2>
+
+<div class="header">
+  <h2>AI tools mastery guide</h2>
+  <p>Click any card to expand. Filter by category. Priority = how much it protects your career.</p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<p class="counter" id="counter"></p>
+<div class="tools-grid" id="grid"></div>
+</div>
+
+<script>
+const cats = ["All","LLM / Chat","Coding","Automation","Image & Design","Video","Voice & Audio","Data & Research","Productivity","AI Dev / Infra"];
+
+const tools = [
+  {rank:1, name:"Claude / ChatGPT / Gemini", icon:"ti-brain", cat:"LLM / Chat", tagline:"Core reasoning engines", priority:"must", p_label:"Must Master",
+   uses:["Prompt Engineering","Long-form reasoning","Code generation","Research synthesis","Agent system prompts"],
+   why:"These are the brains behind everything. If you can't prompt these well, every other AI tool suffers. Prompt engineering is THE meta-skill.",
+   free:"Free tiers available", link:""},
+
+  {rank:2, name:"GitHub Copilot / Cursor", icon:"ti-code", cat:"Coding", tagline:"AI pair programmer in your IDE", priority:"must", p_label:"Must Master",
+   uses:["Autocomplete entire functions","Refactoring","Explaining legacy code","Writing tests","Debugging"],
+   why:"As a Full Stack + AI dev, this is your daily driver. Cursor 3 now runs agent fleets in parallel. Engineers who use these ship 2-3x faster.",
+   free:"Copilot free for students", link:""},
+
+  {rank:3, name:"Claude Code", icon:"ti-terminal-2", cat:"Coding", tagline:"Agentic terminal coding tool", priority:"must", p_label:"Must Master",
+   uses:["Full codebase edits","Multi-file refactors","Git operations","CLI automation","Complex debugging"],
+   why:"This is the future of solo dev. One person can now do what a small team did. Critical for Vyntrix — build faster, ship faster.",
+   free:"Needs Claude Pro/API", link:""},
+
+  {rank:4, name:"n8n / Make (Integromat)", icon:"ti-arrows-transfer-up", cat:"Automation", tagline:"Visual automation workflow builder", priority:"must", p_label:"Must Master",
+   uses:["WhatsApp → Google Sheets","Fee reminder pipelines","CRM automations","AI agent triggers","Webhook management"],
+   why:"Directly powers Vyntrix Automate. Build coaching institute automations visually without backend code. n8n is self-hostable = free forever.",
+   free:"n8n self-hostable (free)", link:""},
+
+  {rank:5, name:"LangChain / LlamaIndex", icon:"ti-link", cat:"AI Dev / Infra", tagline:"Build LLM-powered applications", priority:"must", p_label:"Must Master",
+   uses:["RAG pipelines","Custom AI agents","Document Q&A","Memory for chatbots","Tool-calling agents"],
+   why:"If you want to build AI products — not just use them — this is the framework. Essential for Year 3–4 of your roadmap.",
+   free:"Open source (free)", link:""},
+
+  {rank:6, name:"Perplexity AI", icon:"ti-search", cat:"Data & Research", tagline:"AI-powered real-time search", priority:"high", p_label:"High Value",
+   uses:["Live web research","Cited answers","Competitor research","Market sizing","Quick fact-checking"],
+   why:"Replaces 80% of Google searches. For Vyntrix market research and pitch deck data, this saves hours per week.",
+   free:"Free tier available", link:""},
+
+  {rank:7, name:"Midjourney / Stable Diffusion", icon:"ti-photo-ai", cat:"Image & Design", tagline:"AI image generation", priority:"high", p_label:"High Value",
+   uses:["Brand visuals","Marketing creatives","UI mockup concepts","Social media graphics","Presentation images"],
+   why:"Vyntrix needs visuals constantly. Knowing prompting here = no designer dependency for early-stage work.",
+   free:"SD free, MJ paid", link:""},
+
+  {rank:8, name:"Runway / Kling AI", icon:"ti-movie", cat:"Video", tagline:"AI video generation & editing", priority:"high", p_label:"High Value",
+   uses:["Text-to-video ads","Video editing assistance","Promo clips","Product demos","Social reels"],
+   why:"AI video is exploding. For Vyntrix client demos or your own content, this skill is rare and valuable right now.",
+   free:"Free credits available", link:""},
+
+  {rank:9, name:"ElevenLabs", icon:"ti-microphone", cat:"Voice & Audio", tagline:"Hyper-realistic AI voice cloning", priority:"high", p_label:"High Value",
+   uses:["Voice-over for videos","Podcast creation","IVR/phone systems","Multilingual content","Audio ads"],
+   why:"Coaching institutes often need Hindi/Marathi voice announcements. This could be an upsell service in Vyntrix.",
+   free:"Free tier (limited)", link:""},
+
+  {rank:10, name:"Hugging Face", icon:"ti-robot", cat:"AI Dev / Infra", tagline:"Open-source model hub", priority:"high", p_label:"High Value",
+   uses:["Run local models","Fine-tuning datasets","NLP tasks","Model comparisons","Research papers"],
+   why:"The GitHub of AI. Every serious AI/ML engineer lives here. Relevant from Year 2 onward on your roadmap.",
+   free:"Free (open source)", link:""},
+
+  {rank:11, name:"Zapier / Pabbly", icon:"ti-plug-connected", cat:"Automation", tagline:"No-code app integrations", priority:"high", p_label:"High Value",
+   uses:["Connect 5000+ apps","Auto lead capture","Form → CRM pipelines","Email triggers","Payment notifications"],
+   why:"Complementary to n8n. Zapier is easier for non-tech clients to understand. Good for selling Vyntrix automation packages.",
+   free:"Pabbly cheaper, Zapier free tier", link:""},
+
+  {rank:12, name:"Notion AI", icon:"ti-note", cat:"Productivity", tagline:"AI inside your workspace", priority:"good", p_label:"Good to Know",
+   uses:["Document drafting","Meeting notes","Project planning","Database management","Team wikis"],
+   why:"Running Vyntrix operations — client docs, SOPs, task tracking. Notion AI accelerates all of this.",
+   free:"Free tier available", link:""},
+
+  {rank:13, name:"Gamma / Beautiful.ai", icon:"ti-presentation", cat:"Productivity", tagline:"AI presentation builder", priority:"good", p_label:"Good to Know",
+   uses:["Pitch decks","Client proposals","Class presentations","Business reports","One-pagers"],
+   why:"Your Vyntrix pitch deck could be built here in 20 mins. Much faster than manual PowerPoint.",
+   free:"Free tier available", link:""},
+
+  {rank:14, name:"Lovable / Bolt.new", icon:"ti-layers-intersect", cat:"Coding", tagline:"Prompt-to-web-app builder", priority:"good", p_label:"Good to Know",
+   uses:["MVP prototyping","Landing page generation","Internal tools","Client demos","Startup POCs"],
+   why:"Ship a Vyntrix product demo without writing every line. Great for proving concepts fast before building properly.",
+   free:"Free credits available", link:""},
+
+  {rank:15, name:"Fathom / Otter.ai", icon:"ti-notes", cat:"Productivity", tagline:"AI meeting recorder & summarizer", priority:"good", p_label:"Good to Know",
+   uses:["Auto meeting notes","Action item extraction","Sales call summaries","Interview transcripts","Follow-up drafts"],
+   why:"When Vyntrix scales to client calls, never manually note-take again. Fathom integrates with Zoom/Meet.",
+   free:"Fathom free plan solid", link:""},
+
+  {rank:16, name:"Canva AI / Adobe Firefly", icon:"ti-palette", cat:"Image & Design", tagline:"AI-assisted design tools", priority:"good", p_label:"Good to Know",
+   uses:["Social media posts","Thumbnails","Flyers for coaching","Logo variations","Brand kits"],
+   why:"Vyntrix social content, Instagram posts, client materials — all here. Canva AI is drag-drop + AI magic.",
+   free:"Canva free tier strong", link:""},
+
+  {rank:17, name:"Vertex AI / AWS Bedrock", icon:"ti-cloud", cat:"AI Dev / Infra", tagline:"Cloud AI/ML platforms", priority:"good", p_label:"Good to Know",
+   uses:["Deploy ML models","API hosting","Fine-tuning","Production AI pipelines","Enterprise AI"],
+   why:"Year 3–4 territory. When you're shipping real AI products at scale, you'll live in one of these.",
+   free:"Pay-as-you-go (free credits)", link:""},
+
+  {rank:18, name:"Weights & Biases", icon:"ti-chart-line", cat:"AI Dev / Infra", tagline:"ML experiment tracking", priority:"good", p_label:"Good to Know",
+   uses:["Track model training","Compare experiments","Visualize loss curves","Team ML collaboration","LLM evaluation"],
+   why:"Every ML engineer uses this. When you start training models in Year 3, this becomes essential.",
+   free:"Free for individuals", link:""},
+];
+
+let activeCat = "All";
+
+function render() {
+  const filtered = activeCat === "All" ? tools : tools.filter(t => t.cat === activeCat);
+  const g = document.getElementById("grid");
+  const c = document.getElementById("counter");
+  c.textContent = filtered.length + " tools";
+  
+  g.innerHTML = filtered.map(t => `
+    <div class="tool-card" onclick="toggle(this)" data-name="${t.name}">
+      <div class="card-top">
+        <div class="card-left">
+          <span class="rank">#${t.rank}</span>
+          <div class="tool-icon" style="background:var(--color-background-secondary)"><i class="ti ${t.icon}" style="font-size:16px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+          <div>
+            <div class="tool-name">${t.name}</div>
+            <div class="tool-tagline">${t.tagline}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+          <span class="priority-badge p-${t.priority}">${t.p_label}</span>
+          <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="card-details">
+        <div class="divider"></div>
+        <div class="detail-section">
+          <div class="detail-label">Why it matters</div>
+          <div class="detail-text">${t.why}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Key uses</div>
+          <div class="use-tags">${t.uses.map(u=>`<span class="use-tag">${u}</span>`).join("")}</div>
+        </div>
+        <div style="font-size:12px;color:var(--color-text-success);margin-top:8px"><i class="ti ti-currency-rupee" style="font-size:13px;vertical-align:-1px" aria-hidden="true"></i> ${t.free}</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function toggle(card) {
+  const det = card.querySelector(".card-details");
+  const icon = card.querySelector(".expand-icon");
+  const isOpen = det.classList.contains("open");
+  document.querySelectorAll(".card-details.open").forEach(d => { d.classList.remove("open"); });
+  document.querySelectorAll(".expand-icon.open").forEach(i => { i.classList.remove("open"); });
+  document.querySelectorAll(".tool-card.expanded").forEach(c => { c.classList.remove("expanded"); });
+  if (!isOpen) {
+    det.classList.add("open");
+    icon.classList.add("open");
+    card.classList.add("expanded");
+  }
+}
+
+const tabsEl = document.getElementById("tabs");
+cats.forEach(cat => {
+  const b = document.createElement("button");
+  b.className = "tab" + (cat === "All" ? " active" : "");
+  b.textContent = cat;
+  b.onclick = () => {
+    activeCat = cat;
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    b.classList.add("active");
+    render();
+  };
+  tabsEl.appendChild(b);
+});
+
+render();
+</script>

@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* HERO SECTION */
+#hero {
+  min-height: 100vh;
+  background-image: url("gradient-particle-wave-background_23-2150462041.avif");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.vyntrix {
+  color: blue;
+}
+
+/* HERO CONTENT */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.about {
+  margin: 30px;
+  padding: 15px;
+}
+
+.aboutheading,
+.aboutpara {
+  color: white;
+}
+
+.img1 {
+  width: 400px;
+  margin: 20px;
+}
+
+/* VISION SECTION */
+#vision {
+  min-height: 100vh;
+  background-color: rgb(10, 10, 40);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px;
+}
+
+.h2,
+.p2,
+.missionheading,
+.missionpara {
+  color: white;
+  margin: 20px;
+}
+
+#explore {
+  min-height: 100vh;
+  background-color: rgb(12, 12, 48);
+}
+.cardsheading {
+  text-align: center;
+  color: white;
+  margin: 2px;
+  padding: 30px;
+}
+.cards-container {
+  display: flex;
+
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.c {
+  background-color: rgb(189, 147, 232);
+  border-radius: 15px;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  color: black;
+  font-weight: bold;
+  /* align-items: center; */
+   animation-name: vyx;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.expara {
+  margin-top: 25px;
+  color: rgb(9, 9, 96);
+}
+
+.exptheory {
+  color: white;
+  margin: 50px;
+  padding: 100px;
+  background-color: rgb(79, 79, 235);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.c:hover {
+  background-color: rgb(255, 255, 255);
+  transform: scale(1.1);
+
+  cursor: pointer;
+ 
+}
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes vyx {
+  0%{
+    transform: rotateZ(0deg);
+  }
+50%{
+    transform: rotateZ('40deg');
+}
+  
+  /* 100%{
+    transform: rotateZ('0deg');
+  } */
+}
