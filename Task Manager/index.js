@@ -19,11 +19,5 @@ addbtn.addEventListener("click", function () {
 
   tasklist.appendChild(li);
 });
-// function.input(){
-//     if(input =""){
-//         alert= please add some task first
-//         console.log(alert)
-//     }
-// }
 
 
