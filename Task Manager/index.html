@@ -122,9 +122,44 @@ padding:0;
 box-sizing:border-box;
 
 }
+.welcome{
+    position: absolute;
+    top:189px;
+     animation: 
+    flowHorizontal 1s linear infinite,
+    waveVertical 1s ease-in-out infinite alternate;
+    color: #ccc;
+    font-weight: 500;
+   font-family:"'Noto Sans Devanagari', 'Fira Code', 'Courier New', monospace";
+  
+}
+@keyframes flowHorizontal {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* Subtle vertical fluid waving effect */
+@keyframes waveVertical {
+  0% {
+    transform: translateY(0px) skewX(0deg);
+  }
+  50% {
+    transform: translateY(-4px) skewX(2deg);
+  }
+  100% {
+    transform: translateY(4px) skewX(-2deg);
+  }
+}
     </style>
 </head>
 <body>
+    <div class="welcome">
+        <h1>नमस्ते !</h1>
+    </div>
     <div class="container">
         <h2>Apka Task Manager</h2>
        <div class="input-area">
